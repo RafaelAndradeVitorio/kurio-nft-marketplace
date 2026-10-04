@@ -14,3 +14,15 @@ Relatórios: [suíte completa](reports/e2e/index.html) e [verificação após aj
 Cobertura: filtros/paginação/histórico, cancelamento de respostas antigas, detalhe/estoque/edições, carrinho e cupom com aritmética decimal, sessão/cadastro/mesclagem, favoritos e rollback, isolamento entre usuários, avatar/senha/carteiras, conexão simulada recusada, revisão e cotação alterada, compra confirmada/recusada/pendente, snapshot imutável, idempotência após timeout e conflito de payload, quantidades adicionadas durante pedido pendente, expiração, refresh/reconexão, eventos Socket.IO antigos/duplicados e erros REST recuperáveis.
 
 Falhas durante o desenvolvimento foram usadas para corrigir idempotência após timeout, handshake do binding, rollback de favoritos e labels das duas carteiras. O Playwright está configurado para gerar trace, vídeo e screenshot em qualquer nova falha; a rodada aprovada não gera traces de falha.
+
+## Vercel
+
+Aplicação pública: https://kurio-nft-marketplace-mauve.vercel.app. Projeto vinculado a `RafaelAndradeVitorio/kurio-nft-marketplace`, branch `main`, framework Vite. Primeiro deployment `dpl_FYde4oMdr7g2zLgeMW4eTKbRfQLU`, código `cd3f45d6b225c6e981784106f1ef7940f5d83f8c`, estado READY. A proteção SSO do novo projeto foi desativada para permitir acesso público à demonstração.
+
+Execução Playwright contra o domínio: **6/6 testes aprovados**, desktop e mobile, detalhe direto/recurso inexistente, compra completa/idempotência/recibo e pedido pendente/desconexão/refresh/reconciliação. Report: [verificação publicada](reports/deployed/index.html). A URL de detalhe retorna HTTP 200 com fallback SPA; o refresh preserva a sessão e os dados de cada contexto. Esta rodada usa os mesmos handlers MSW e cliente Socket.IO em HTTPS.
+
+```sh
+# PowerShell
+$env:BASE_URL='https://kurio-nft-marketplace-mauve.vercel.app'
+npx playwright test --grep 'compra completa|detalhe direto|pedido pendente:'
+```

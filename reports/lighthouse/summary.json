@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-04T02:36:09.859Z",
+  "environment": {
+    "node": "v22.12.0",
+    "platform": "win32",
+    "release": "10.0.26200",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12450HX",
+    "lighthouse": "13.5.0",
+    "chrome": "C:\\Users\\megan\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe",
+    "base": "http://127.0.0.1:4174",
+    "conditions": "Build otimizado servido pelo preview com gzip; dados padrão; navegador novo a cada medição; throttling Lighthouse mobile padrão e desktop CPU 1x/10Mbps; MSW e Socket.IO ativos."
+  },
+  "results": [
+    {
+      "page": "inicio",
+      "profile": "mobile",
+      "runs": 3,
+      "scores": {
+        "performance": 80,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 3924.9674999999997,
+      "cls": 0.0001594537063753838,
+      "tbt": 180.98024999999984
+    },
+    {
+      "page": "inicio",
+      "profile": "desktop",
+      "runs": 3,
+      "scores": {
+        "performance": 97,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 1053.288,
+      "cls": 0.00033491202677747,
+      "tbt": 10
+    },
+    {
+      "page": "detalhe",
+      "profile": "mobile",
+      "runs": 3,
+      "scores": {
+        "performance": 82,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 4028.733,
+      "cls": 0.00014923093049145923,
+      "tbt": 189
+    },
+    {
+      "page": "detalhe",
+      "profile": "desktop",
+      "runs": 3,
+      "scores": {
+        "performance": 97,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 1185.1039999999998,
+      "cls": 0.0001265702216066482,
+      "tbt": 0
+    }
+  ]
+}

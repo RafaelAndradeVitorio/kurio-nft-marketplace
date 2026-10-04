@@ -2,6 +2,8 @@
 
 Marketplace demonstrativo em React e TypeScript baseado no [Figma do desafio](https://www.figma.com/design/r5D7DJt8lHjXBKgdy3mGhG/Frontend-Challenge--Copy-?node-id=0-1). Todos os fluxos de compra, conta e tempo real utilizam simulação local. Não conecte uma carteira real nem utilize dados pessoais.
 
+**[Abrir aplicação](https://kurio-nft-marketplace-mauve.vercel.app)** · **[Repositório público](https://github.com/RafaelAndradeVitorio/kurio-nft-marketplace)**
+
 ## Executar
 
 Node.js **22.19 ou superior**, npm e Git. Não é necessário backend, chave de API ou serviço privado.
