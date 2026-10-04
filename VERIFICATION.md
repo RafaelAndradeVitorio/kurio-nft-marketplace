@@ -15,6 +15,8 @@ Cobertura: filtros/paginação/histórico, cancelamento de respostas antigas, de
 
 Falhas durante o desenvolvimento foram usadas para corrigir idempotência após timeout, handshake do binding, rollback de favoritos e labels das duas carteiras. O Playwright está configurado para gerar trace, vídeo e screenshot em qualquer nova falha; a rodada aprovada não gera traces de falha.
 
+A primeira execução no GitHub encontrou uma corrida ao aumentar a quantidade e digitar um cupom antes da recotação. O resumo era desmontado durante atualização em segundo plano. A correção mantém o formulário e a cotação anterior apenas para o mesmo usuário/rede, anuncia a atualização e bloqueia finalizar enquanto consulta valores. O teste adicional com latência de 1800 ms reproduz a regressão em ambos os perfis; a verificação específica de cupom/carrinho passou 4/4. O [trace da regressão antes da correção](reports/regression-before-fix/coupon-trace.zip) está preservado para inspeção com `npx playwright show-trace`.
+
 ## Vercel
 
 Aplicação pública: https://kurio-nft-marketplace-mauve.vercel.app. Projeto vinculado a `RafaelAndradeVitorio/kurio-nft-marketplace`, branch `main`, framework Vite. Primeiro deployment `dpl_FYde4oMdr7g2zLgeMW4eTKbRfQLU`, código `cd3f45d6b225c6e981784106f1ef7940f5d83f8c`, estado READY. A proteção SSO do novo projeto foi desativada para permitir acesso público à demonstração.

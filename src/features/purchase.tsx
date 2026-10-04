@@ -40,6 +40,11 @@ function useQuote(network: Network = "Ethereum") {
     queryFn: ({ signal }) => get<Quote>(`/quotes?network=${network}`, signal),
     enabled: !!c.data,
     staleTime: 0,
+    placeholderData: (previous, previousQuery) =>
+      previousQuery?.queryKey[1] === owner &&
+      previousQuery?.queryKey[3] === network
+        ? previous
+        : undefined,
   });
 }
 export function QuoteSummary({
@@ -78,9 +83,16 @@ export function QuoteSummary({
               placeholder="Digite o código promocional…"
               value={code}
               onChange={(e) => setCode(e.target.value)}
+              aria-invalid={mutation.isError}
+              aria-describedby={mutation.isError ? "coupon-error" : undefined}
             />
             <Button disabled={mutation.isPending}>Aplicar</Button>
           </form>
+          {mutation.isError && (
+            <p id="coupon-error" className="field-error" role="alert">
+              {errorInfo(mutation.error).message}
+            </p>
+          )}
           {quote.coupon && (
             <button className="text-action" onClick={() => mutation.mutate("")}>
               Remover cupom {quote.coupon}
@@ -223,11 +235,12 @@ export function CartPage() {
             </div>
             <aside className="cart-summary">
               <h2>Resumo da carteira</h2>
-              {quote.isFetching ? (
-                <Loading kind="summary" />
-              ) : (
-                <QuoteSummary quote={q} coupon />
-              )}
+              <QuoteSummary quote={q} coupon />
+              <span className="sr-only" role="status" aria-live="polite">
+                {quote.isFetching
+                  ? "Atualizando cotação do carrinho"
+                  : "Cotação atualizada"}
+              </span>
               {q.issues
                 .filter((i) => !i.includes("selecione a rede"))
                 .map((i) => (
@@ -238,7 +251,9 @@ export function CartPage() {
               <Button
                 className="checkout-button"
                 disabled={
-                  q.lines.some((l) => l.quantity > l.stock) || change.isPending
+                  q.lines.some((l) => l.quantity > l.stock) ||
+                  change.isPending ||
+                  quote.isFetching
                 }
                 onClick={() =>
                   void navigate(

@@ -1,6 +1,22 @@
 import { test, expect } from "@playwright/test";
 import { addNFT, checkout, command, login, reset } from "./helpers";
 test.beforeEach(async ({ page }) => reset(page));
+test("cupom digitado permanece durante recotação lenta do carrinho", async ({
+  page,
+}) => {
+  await addNFT(page);
+  await command(page, { scenario: "slow" });
+  await page
+    .locator(".cart-items")
+    .getByRole("button", { name: "Aumentar quantidade" })
+    .click();
+  await page.getByLabel("Código promocional").fill("INVALID");
+  await expect(page.locator(".cart-items .quantity")).toContainText("2");
+  await expect(page.getByLabel("Código promocional")).toHaveValue("INVALID");
+  await page.getByRole("button", { name: "Aplicar", exact: true }).click();
+  await expect(page.locator("#coupon-error")).toContainText("Cupom inválido");
+  await command(page, { scenario: "standard" });
+});
 test("resultado vazio, HTTP 503 e recuperação", async ({ page }) => {
   await command(page, { scenario: "empty" });
   await page.reload();
