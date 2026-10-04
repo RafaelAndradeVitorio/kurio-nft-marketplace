@@ -65,4 +65,4 @@ Vercel: preset Vite, comando `npm run build`, saída `dist`. `vercel.json` prese
 
 Consulte `CONTRACTS.md` para REST e eventos, `ARCHITECTURE.md` para cache, sessão, persistência, decisões e limitações, e `PERFORMANCE.md` para resultados medidos. A fonte Roboto Mono e todos os assets usados são locais. As quatro imagens originais estão preservadas; variantes WebP geradas a partir delas reduzem o peso sem mudar a composição.
 
-[Evidências de verificação](VERIFICATION.md): suíte completa 44/44, verificação final de catálogo/eventos/visual 8/8, oito baselines e relatórios HTML. O workflow GitHub executa tipos, lint, build e E2E a cada push/PR.
+[Evidências de verificação](VERIFICATION.md): suíte final 46/46, oito baselines, compra verificada na Vercel e relatórios HTML. O workflow GitHub executa tipos, lint, build e E2E em push/PR.
