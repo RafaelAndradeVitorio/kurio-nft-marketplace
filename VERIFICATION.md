@@ -1,0 +1,16 @@
+# Verificação
+
+Executado em Windows, Node 22.12.0, Vite 7.3.6 e Playwright 1.63.0 / Chromium. O projeto recomenda Node 22.19+ para atender também aos requisitos de engine de todas as ferramentas.
+
+- `npm run typecheck`, `npm run lint` e `npm run build`: aprovados.
+- Suíte completa no build servido em `127.0.0.1:4174`: **44/44 testes aprovados**, sem retries, desktop 1440×1000 e mobile 390×844.
+- Após o endurecimento de estados terminais, sincronização do filtro de preço com a URL e isolamento das fontes Tailwind, nova rodada de catálogo, eventos, pedidos e visual: **8/8 aprovados**.
+- Oito capturas baseline (quatro páginas × dois perfis), sem atualização na rodada final.
+- Testes adicionais em 768 px e viewport CSS 384 px, equivalente ao reflow em zoom 200% numa janela de 768 px; foco do skip link, diálogos e drawer.
+- `npm audit`: zero vulnerabilidades encontradas no lockfile instalado.
+
+Relatórios: [suíte completa](reports/e2e/index.html) e [verificação após ajustes finais](reports/e2e-followup/index.html). Para reproduzir, `npm ci`, `npx playwright install chromium`, `npm run test:e2e`. O servidor de desenvolvimento inicia automaticamente; `BASE_URL` permite apontar os testes ao preview de um build ou deploy. Cada teste cria um contexto novo e reseta toda a base pelo endpoint MSW.
+
+Cobertura: filtros/paginação/histórico, cancelamento de respostas antigas, detalhe/estoque/edições, carrinho e cupom com aritmética decimal, sessão/cadastro/mesclagem, favoritos e rollback, isolamento entre usuários, avatar/senha/carteiras, conexão simulada recusada, revisão e cotação alterada, compra confirmada/recusada/pendente, snapshot imutável, idempotência após timeout e conflito de payload, quantidades adicionadas durante pedido pendente, expiração, refresh/reconexão, eventos Socket.IO antigos/duplicados e erros REST recuperáveis.
+
+Falhas durante o desenvolvimento foram usadas para corrigir idempotência após timeout, handshake do binding, rollback de favoritos e labels das duas carteiras. O Playwright está configurado para gerar trace, vídeo e screenshot em qualquer nova falha; a rodada aprovada não gera traces de falha.

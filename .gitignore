@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.vercel/
+.env.local
+test-results/
+playwright-report/
+reports/initial-audit/
+reports/optimized-audit/
+*.tsbuildinfo

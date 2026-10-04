@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!assets/|mockServiceWorker.js|favicon.svg|robots.txt).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/mockServiceWorker.js",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+    }
+  ]
+}
